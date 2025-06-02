@@ -3,8 +3,8 @@
 title: |
   ![](img/pgm.png){width=60%} 
   
-  Aula mapeamento por associação - GWAS
-author: "Helio de Souza Junior,^[Universidade Estadual de Maringá, helioszjr@gmail.com] PG:55679"
+  Estudo de associação genômica ampla (GWAS)
+author: "Helio de Souza Junior,^[Universidade Estadual de Maringá, pg55679@uem.br] PG:55679"
 date: "06-01-2025"
 format: pdf
 lang: pt
@@ -22,9 +22,9 @@ editor_options:
 
 Elaborado por [Helio de Souza Junior](https://github.com/Helioszjr), com
 [RStudio](https://posit.co/download/rstudio-desktop) usando
-[Rmarkdown](https://rmarkdown.rstudio.com/index.html) e
-[Quarto](https://quarto.org/docs/guide/) . Código disponível no
-[GitHub](https://github.com/Helioszjr).
+[Rmarkdown](https://rmarkdown.rstudio.com/index.html) [LaTeX](https://www.latex-project.org/) e
+[Quarto](https://quarto.org/docs/guide/) . Código disponível no meu
+[GitHub](https://github.com/Helioszjr/mrMLM).
 
 ## Pacote - mrMLM
 
@@ -67,6 +67,7 @@ Os dados genotípicos e fenotípicos devem ser preparados no formato correto, co
 
 *4. Matriz de parentesco (K)* por enquanto não fazer
 
+**OBS:** Modificar os caminhos dos arquivos de dados
 ```{r, echo=TRUE, eval=FALSE}
 GenotypicData <- read.csv("C:/Mapeamento por associação/Genotype_Hmp.txt")
 PhenotypicData <- read.csv("C:/Mapeamento por associação/Phenotype.txt")
