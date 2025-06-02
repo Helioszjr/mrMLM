@@ -3,9 +3,9 @@
 title: |
   ![](img/pgm.png){width=60%} 
   
-  Estudo de associação genômica ampla (GWAS)
+  AULA: Mapeamento por Associação (GWAS)
 author: "Helio de Souza Junior,^[Universidade Estadual de Maringá, pg55679@uem.br] PG:55679"
-date: "06-01-2025"
+date: "06-02-2025"
 format: pdf
 lang: pt
 toc: true
@@ -18,9 +18,11 @@ editor_options:
 ---
 
 \pagebreak
-**Disciplina: Genômica Aplicada ao Melhoramento de Plantas, ministrada pela Profa. Dra. Maria Celeste e Dra. Sthephanie Alves.**
+**Disciplina: Genômica Aplicada ao Melhoramento de Plantas, ministrada pela Profa. Dra. Maria Celeste**
 
-Elaborado por [Helio de Souza Junior](https://github.com/Helioszjr), com
+**Aula: Mapeamento por Associação (GWAS), ministrada pela Dra. Sthephanie Alves.**
+
+Arquivo elaborado por [Helio de Souza Junior](https://github.com/Helioszjr), com
 [RStudio](https://posit.co/download/rstudio-desktop) usando
 [Rmarkdown](https://rmarkdown.rstudio.com/index.html) [LaTeX](https://www.latex-project.org/) e
 [Quarto](https://quarto.org/docs/guide/) . Código disponível no meu
@@ -33,6 +35,8 @@ Multi-Locus Random-SNP-Effect Mixed Linear Model Tools for GWAS. [Manual PDF](ht
 ## Artigos
 
 Methodological implementation of mixed linear models in multi-locus genome-wide association studies. [https://doi.org/10.1093/bib/bbw145](https://doi.org/10.1093/bib/bbw145).
+
+mrMLM v4.0.2: An R Platform for Multi-locus Genome-wide Association Studies. [https://doi.org/10.1016/j.gpb.2020.06.006](https://doi.org/10.1016/j.gpb.2020.06.006).
 
 A compressed variance component mixed model for detecting QTNs and QTN-by-environment and QTN-by-QTN interactions in genome-wide association studies. [https://doi.org/10.1016/j.molp.2022.02.012](https://doi.org/10.1016/j.molp.2022.02.012).
 
@@ -142,3 +146,20 @@ mrMLM(
 **3.** O gráfico de Manhattan.
 
 **4.** O gráfico QQ.
+
+## Shiny
+
+Temos também a opção de usar o Shiny sem precisar elaborar as linhas de comandos
+
+O mrMLM.GUI é iniciada por meio dos dois comandos " library (mrMLM.GUI)" e " mrMLM.GUI ()". Foi desenvolvido com base no Shiny.
+
+```{r, echo=TRUE, eval=FALSE}
+# download Rtools
+
+library("mrMLM.GUI")
+mrMLM.GUI()
+```
+
+![](img/20.png){fig-align="center"}
+
+Para mais informções abrir o [Manual PDF](https://cran.r-project.org/web/packages/mrMLM/mrMLM.pdf).
