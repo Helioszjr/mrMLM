@@ -1,0 +1,143 @@
+
+---
+title: |
+  ![](img/pgm.png){width=60%} 
+  
+  Aula mapeamento por associação - GWAS
+author: "Helio de Souza Junior,^[Universidade Estadual de Maringá, helioszjr@gmail.com] PG:55679"
+date: "06-01-2025"
+format: pdf
+lang: pt
+toc: true
+code-annotations: "hover"
+editor: 
+  markdown: 
+    wrap: 72
+editor_options: 
+  chunk_output_type: console
+---
+
+\pagebreak
+**Disciplina: Genômica Aplicada ao Melhoramento de Plantas, ministrada pela Profa. Dra. Maria Celeste e Dra. Sthephanie Alves.**
+
+Elaborado por [Helio de Souza Junior](https://github.com/Helioszjr), com
+[RStudio](https://posit.co/download/rstudio-desktop) usando
+[Rmarkdown](https://rmarkdown.rstudio.com/index.html) e
+[Quarto](https://quarto.org/docs/guide/) . Código disponível no
+[GitHub](https://github.com/Helioszjr).
+
+## Pacote - mrMLM
+
+Multi-Locus Random-SNP-Effect Mixed Linear Model Tools for GWAS. [Manual PDF](https://cran.r-project.org/web/packages/mrMLM/mrMLM.pdf).
+
+## Artigos
+
+Methodological implementation of mixed linear models in multi-locus genome-wide association studies. [https://doi.org/10.1093/bib/bbw145](https://doi.org/10.1093/bib/bbw145).
+
+A compressed variance component mixed model for detecting QTNs and QTN-by-environment and QTN-by-QTN interactions in genome-wide association studies. [https://doi.org/10.1016/j.molp.2022.02.012](https://doi.org/10.1016/j.molp.2022.02.012).
+
+## Pré-requisitos
+
+Antes de executar os scripts de análise, certifique-se de estar usando o **R versão 4.4.3 ou superior**. Isso é essencial para a compatibilidade com o pacote `mrMLM` e suas dependências.
+
+## Configurando seu ambiente de trabalho
+
+Para começar, defina seu diretório de trabalho no R como o local onde você armazenou os scripts de análise e os arquivos de dados. Você pode fazer isso modificando o seguinte comando com o caminho do seu diretório específico:
+
+## Instalar o pacote mrMLM e suas dependências
+
+Você pode usar o `mrMLM.GUI` ou a instalação baseada em comandos.
+
+```{r, echo=TRUE, eval=FALSE}
+options(repos = c(CRAN = "https://cran.r-project.org"))
+install.packages("mrMLM.GUI", dependencies = TRUE)
+```
+
+## Preparando Dados
+
+Os dados genotípicos e fenotípicos devem ser preparados no formato correto, conforme disponível na pasta de dados de exemplo do pacote [mrMLM no CRAN](https://cran.r-project.org/package=mrMLM).
+
+## Devem ser preparados quatro dados de entrada diferentes:
+
+**1.** Dados genotípicos 
+
+**2.** Dados fenotípicos
+
+**3.**Matriz de estrutura populacional (Q)
+
+*4. Matriz de parentesco (K)* por enquanto não fazer
+
+```{r, echo=TRUE, eval=FALSE}
+GenotypicData <- read.csv("C:/Mapeamento por associação/Genotype_Hmp.txt")
+PhenotypicData <- read.csv("C:/Mapeamento por associação/Phenotype.txt")
+PopStr <- read.csv("C:/Mapeamento por associação/PopStr.txt")
+```
+
+## Análise de associação em todo o genoma usando a função mrMLM do pacote mrMLM.
+
+### Trait 1
+
+```{r, echo=TRUE, eval=FALSE}
+# Cria a pasta se ela ainda não existir
+dir.create("C:/Mapeamento por associação/Resultados_GWAS", recursive = TRUE)
+```
+
+
+```{r, echo=TRUE, eval=FALSE}
+# Executa a análise
+mrMLM(
+  fileGen = "C:/Mapeamento por associação/Genotype_Hmp.txt",
+  filePhe = "C:/Mapeamento por associação/Phenotype.txt",
+  filePS = "C:/Mapeamento por associação/PopStr.txt",
+  Genformat = "Hmp",
+  method = c("ISIS EM-BLASSO", "mrMLM", "FASTmrMLM", "FASTmrEMMA", "pLARmEB", "pKWmEB"),
+  Likelihood = "REML",
+  trait = 1,
+  SearchRadius = 20,
+  CriLOD = 3,
+  Bootstrap = TRUE,
+  DrawPlot = TRUE,
+  Plotformat = "jpeg",
+  dir = "C:/Mapeamento por associação/Resultados_GWAS",
+  PopStrType = "Q"
+)
+
+```
+
+### Trait 2
+
+```{r, echo=TRUE, eval=FALSE}
+# Cria a pasta se ela ainda não existir
+dir.create("C:/Mapeamento por associação/Resultados_GWAS", recursive = TRUE)
+```
+
+```{r, echo=TRUE, eval=FALSE}
+# Executa a análise
+mrMLM(
+  fileGen = "C:/Mapeamento por associação/Genotype_Hmp.txt",
+  filePhe = "C:/Mapeamento por associação/Phenotype.txt",
+  filePS = "C:/Mapeamento por associação/PopStr.txt",
+  Genformat = "Hmp",
+  method = c("ISIS EM-BLASSO", "mrMLM", "FASTmrMLM", "FASTmrEMMA", "pLARmEB", "pKWmEB"),
+  Likelihood = "REML",
+  trait = 2,
+  SearchRadius = 20,
+  CriLOD = 3,
+  Bootstrap = TRUE,
+  DrawPlot = TRUE,
+  Plotformat = "jpeg",
+  dir = "C:/Mapeamento por associação/Resultados_GWAS",
+  PopStrType = "Q"
+)
+
+```
+
+## Serão produzidos quatro resultados diferentes:
+
+**1.** Resultados finais contendo associações significativas entre marcadores e características com valores de -log10(p), valores de R² e outros detalhes necessários.
+
+**2.** Resultados intermediários.
+
+**3.** O gráfico de Manhattan.
+
+**4.** O gráfico QQ.
