@@ -1,5 +1,5 @@
 # mrMLM
-O objetivo dessa aula foi realizar análises de alguns métodos GWAS multilocus para identificar SNPs, incluindo alguns método mrMLM que tem alta velocidade computacional, alta potência e precisão, e baixa taxa de falsos positivos.
+Realizando análises de alguns métodos GWAS multilocus para identificar SNPs, incluindo alguns método mrMLM que tem alta velocidade computacional, alta potência e precisão, e baixa taxa de falsos positivos.
 
 Disciplina: Genômica Aplicada ao Melhoramento de Plantas, ministrada pela Profa. Dra. Maria Celeste e Dra. Sthephanie Alves. 
 
